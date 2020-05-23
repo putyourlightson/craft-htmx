@@ -16,7 +16,7 @@ Provides helpers for integrating Htmx with Craft CMS 3.
 
 The following variables are available in your twig templates. These are provided by the [request headers](https://htmx.org/docs/#request-headers) in Htmx.
 
-> A shorthand version of the variable `craft.hx` will also work.
+> A shorthand version of the variable (`craft.hx`) can also be used.
 
 ### `craft.htmx.isRequest`
 Evaluates to `true` if this is a Htmx request, otherwise `false`.
