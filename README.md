@@ -1,6 +1,8 @@
+<p align="center"><img width="130" src="https://raw.githubusercontent.com/putyourlightson/craft-htmx/v1/src/icon.svg"></p>
+
 # Htmx Plugin for Craft CMS 3
 
-Provides helpers for integrating Htmx with Craft CMS 3.
+Provides helpers for integrating [Htmx](https://htmx.org/) with [Craft CMS 3](https://craftcms.com/).
 
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
