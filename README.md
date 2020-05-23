@@ -40,8 +40,6 @@ The following variables are available in your twig templates. These are provided
 {{ craft.htmx.element.value }}
 ```
 
-Craft CMS 3.0.0 or later.
-
 ## Requirements
 
 Craft CMS 3.0.0 or later.
