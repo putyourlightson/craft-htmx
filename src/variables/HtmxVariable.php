@@ -93,7 +93,7 @@ class HtmxVariable
         return [
             'id' => $headers->get('X-HX-Active-Element', '', true),
             'name' => $headers->get('X-HX-Active-Element-Name', '', true),
-            'value' => $headers->get('X-HX-Active-Element', '', true),
+            'value' => $headers->get('X-HX-Active-Element-Value', '', true),
         ];
     }
 }
