@@ -7,6 +7,7 @@ namespace putyourlightson\htmx;
 
 use craft\base\Plugin;
 use craft\web\twig\variables\CraftVariable;
+use putyourlightson\htmx\variables\HtmxVariable;
 use yii\base\Event;
 
 class Htmx extends Plugin
