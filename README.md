@@ -5,10 +5,10 @@ Provides helpers for integrating Htmx with Craft CMS 3.
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
 ```twig
-{% set value = craft.app.request.get('value') %}
+{% set value = craft.app.request.get('value', 0) %}
 
 {% if craft.htmx.isRequest and craft.htmx.element.name == 'increment' %}
-    {% set value = craft.htmx.element.value + 1 %}
+    {% set value = value + craft.htmx.element.value %}
 {% endif %}
 ```
 
