@@ -46,8 +46,6 @@ The name of the current active element.
 ### `craft.htmx.element.value`
 The value of the current active element.
 
-```
-
 ## Requirements
 
 Craft CMS 3.0.0 or later.
