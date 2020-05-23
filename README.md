@@ -8,36 +8,36 @@ Provides helpers for integrating Htmx with Craft CMS 3.
 
 The following variables are available in your twig templates. These are provided by the [request headers](https://htmx.org/docs/#request-headers) in Htmx.
 
-```twig
-{# Evaluates to `true` if this is a Htmx request, otherwise `false` #}
-{% if craft.htmx.isRequest %}
+### `craft.htmx.isRequest`
+Evaluates to `true` if thisis a Htmx request, otherwise `false`.
 
-{# The ID of the element that triggered the request #}
-{{ craft.htmx.trigger.id }}
+### `craft.htmx.trigger.id`
+The ID of the element that triggered the request.
 
-{# The name of the element that triggered the request #}
-{{ craft.htmx.trigger.name }}
+### `craft.htmx.trigger.name`
+The name of the element that triggered the request.
 
-{# The ID of the target element #}
-{{ craft.htmx.target.id }}
+### `craft.htmx.target.id`
+The ID of the target element.
 
-{# The current URL in the browser #}
-{{ craft.htmx.currentUrl }}
+### `craft.htmx.url`
+The URL of the browser.
 
-{# The the value entered by the user when prompted via hx-prompt #}
-{{ craft.htmx.prompt }}
+### `craft.htmx.prompt`
+The value entered by the user when prompted via `hx-prompt`.
 
-{# The ID of the original target of the event that triggered the request #}
-{{ craft.htmx.eventTarget.id }}
+### `craft.htmx.eventTarget.id`
+The ID of the original target of the event that triggered the request.
 
-{# The ID of the current active element #}
-{{ craft.htmx.element.id }}
+### `craft.htmx.element.id`
+The ID of the current active element.
 
-{# The name of the current active element #}
-{{ craft.htmx.element.name }}
+### `craft.htmx.element.name`
+The name of the current active element.
 
-{# The value of the current active element #}
-{{ craft.htmx.element.value }}
+### `craft.htmx.element.value`
+The value of the current active element.
+
 ```
 
 ## Requirements
