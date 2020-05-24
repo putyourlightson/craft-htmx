@@ -5,8 +5,10 @@
 
 namespace putyourlightson\htmx;
 
+use Craft;
 use craft\base\Plugin;
 use craft\web\twig\variables\CraftVariable;
+use putyourlightson\htmx\twigextensions\HtmxTwigExtension;
 use putyourlightson\htmx\variables\HtmxVariable;
 use yii\base\Event;
 
@@ -18,6 +20,11 @@ class Htmx extends Plugin
     public static $plugin;
 
     /**
+     * @var SeomaticVariable
+     */
+    public static $htmxVariable;
+
+    /**
      * @inheritdoc
      */
     public function init()
@@ -27,6 +34,7 @@ class Htmx extends Plugin
         self::$plugin = $this;
 
         $this->_registerVariables();
+        $this->_registerTwigExtensions();
     }
 
     /**
@@ -39,8 +47,15 @@ class Htmx extends Plugin
                 /** @var CraftVariable $variable */
                 $variable = $event->sender;
                 $variable->set('htmx', HtmxVariable::class);
-                $variable->set('hx', HtmxVariable::class);
             }
         );
+    }
+
+    /**
+     * Registers Twig extensions
+     */
+    private function _registerTwigExtensions()
+    {
+        Craft::$app->view->registerTwigExtension(new HtmxTwigExtension());
     }
 }
