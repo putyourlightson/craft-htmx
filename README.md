@@ -91,6 +91,7 @@ When sending a POST request, the `action` field should be set to `htmx/route` an
 
 ```twig
 {% set content %}
+    <input type="text" name="title" value="My Title">
     <input type="submit" value="Save">
 {% endset %}
 
@@ -102,10 +103,6 @@ When sending a POST request, the `action` field should be set to `htmx/route` an
         route: 'entries/save-entry',
         sectionId: entry.sectionId,
         entryId: entry.id,
-        title: {
-            type: 'text',
-            value: entry.title,
-        }
     }
 }) }}
 ```
