@@ -7,10 +7,25 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
 ```twig
-{% set value = craft.app.request.get('value', 0) %}
+{# Increment a temperature value by the provided value. #}
 
-{% if craft.htmx.isRequest and craft.htmx.element.name == 'increment' %}
-    {% set value = value + craft.htmx.element.value %}
+{% set temp = craft.app.request.get('temp', 29) %}
+    
+<form hx-get="/get-temp">
+    {% if hx.isRequest and hx.element.name == 'increment' %}
+        {% set temp = temp + hx.element.value %}
+    {% endif %}
+    
+    <h3>It's {{ temp >= 30 ? 'hot' : 'mild' }}</h3>
+    <button type="submit" name="increment" value="-1">-</button>
+    Temperature: <input type="text" name="temp" value="{{ temp }}" />
+    <button type="submit" name="increment" value="1">+</button>
+</form>
+
+{# --- Increment a value by the provided value. --- #}
+
+{% if hx.isRequest and hx.element.name == 'increment' %}
+    {% set value = value + hx.element.value %}
 {% endif %}
 ```
 
