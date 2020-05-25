@@ -25,7 +25,7 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
 
 ## Controllers
 
-The `route` controller makes it possible to route actions to any controller action in Craft (or a plugin/module), while ensuring that the result is in the format `text/html`.
+The `route` controller makes it possible to route actions to any controller action in Craft (or a plugin/module), while ensuring that the result is in the format `text/html` (and that no redirect takes place).
 
 When sending a POST request, the `action` field should be set to `htmx/route` and the `route` parameter should be set to the controller action that you want to be called, for example `entries/save-entry`. Be sure to send a CSRF token along with the request unless you have disabled CSRF protection in Craft.
 
