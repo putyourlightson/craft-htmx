@@ -8,6 +8,7 @@ namespace putyourlightson\htmx\variables;
 use Craft;
 use craft\helpers\Html;
 use craft\helpers\Template;
+use craft\web\Request;
 use Twig\Markup;
 
 class HtmxVariable
@@ -21,8 +22,13 @@ class HtmxVariable
     public function get(array $params = []): Markup
     {
         $tag = $params['tag'] ?? 'div';
-        $content = $params['content'] ?? 'div';
         $url = $params['url'] ?? '';
+        $content = $params['content'] ?? '';
+        $data = $params['data'] ?? [];
+
+        $queryString = http_build_query($data);
+        $url .= $queryString ? '?'.$queryString : '';
+
         $attributes = array_merge(['hx-get' => $url], ($params['attributes'] ?? []));
 
         return Template::raw(
@@ -38,24 +44,39 @@ class HtmxVariable
      */
     public function post(array $params = []): Markup
     {
+        $tag = $params['tag'] ?? 'form';
         $url = $params['url'] ?? '';
         $content = $params['content'] ?? '';
         $data = $params['data'] ?? [];
         $attributes = array_merge(['hx-post' => $url], ($params['attributes'] ?? []));
 
-        $dataFields = [];
+        $inputFields = [Html::csrfInput()];
 
         foreach ($data as $name => $value) {
-            $dataFields[] = Html::hiddenInput($name, $value);
+            $inputFields[] = Html::hiddenInput($name, $value);
         }
 
+        $content = implode(' ', $inputFields).$content;
+
         return Template::raw(
-            Html::beginForm('', 'post', $attributes)
-            .Html::csrfInput()
-            .implode(' ', $dataFields)
-            .$content
-            .Html::endForm()
+            Html::tag($tag, $content, $attributes)
         );
+    }
+
+    /**
+     * Returns the request parameter if this is a Htmx request, otherwise `$defaultValue`.
+     *
+     * @param string $name
+     * @param mixed $defaultValue
+     * @return mixed
+     */
+    public function getParam(string $name, $defaultValue = null)
+    {
+        if (!$this->getIsRequest()) {
+            return $defaultValue;
+        }
+
+        return Craft::$app->getRequest()->getParam($name, $defaultValue);
     }
 
     /**

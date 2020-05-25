@@ -53,35 +53,38 @@ Which will be output as:
 </form>
 ```
 
+### `craft.htmx.getParam(string $name, $defaultValue = null)`
+Returns the request parameter if this is a Htmx request, otherwise `$defaultValue`.
+
 ### `craft.htmx.isRequest`
 Evaluates to `true` if this is a Htmx request, otherwise `false`.
 
 ### `craft.htmx.trigger.id`
-The ID of the element that triggered the request.
+Returns the ID of the element that triggered the request.
 
 ### `craft.htmx.trigger.name`
-The name of the element that triggered the request.
+Returns the name of the element that triggered the request.
 
 ### `craft.htmx.target.id`
-The ID of the target element.
+Returns the ID of the target element.
 
 ### `craft.htmx.url`
-The URL of the browser.
+Returns the URL of the browser.
 
 ### `craft.htmx.prompt`
-The value entered by the user when prompted via `hx-prompt`.
+Returns the value entered by the user when prompted via `hx-prompt`.
 
 ### `craft.htmx.eventTarget.id`
-The ID of the original target of the event that triggered the request.
+Returns the ID of the original target of the event that triggered the request.
 
 ### `craft.htmx.element.id`
-The ID of the current active element.
+Returns the ID of the current active element.
 
 ### `craft.htmx.element.name`
-The name of the current active element.
+Returns the name of the current active element.
 
 ### `craft.htmx.element.value`
-The value of the current active element.
+Returns the value of the current active element.
 
 ## Controllers
 
