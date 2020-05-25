@@ -7,6 +7,7 @@ namespace putyourlightson\htmx\controllers;
 
 use Craft;
 use craft\web\Controller;
+use yii\base\InvalidRouteException;
 use yii\web\Response;
 
 class RouteController extends Controller
@@ -20,6 +21,7 @@ class RouteController extends Controller
      * Routes an action request through to another controller.
      *
      * @return Response
+     * @throws InvalidRouteException if the requested route cannot be resolved into an action successfully.
      */
     public function actionIndex(): Response
     {
