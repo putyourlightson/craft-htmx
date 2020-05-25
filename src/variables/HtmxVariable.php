@@ -6,9 +6,58 @@
 namespace putyourlightson\htmx\variables;
 
 use Craft;
+use craft\helpers\Html;
+use craft\helpers\Template;
+use Twig\Markup;
 
 class HtmxVariable
 {
+    /**
+     * Returns a `hx-get` tag.
+     *
+     * @param array $params
+     * @return Markup
+     */
+    public function get(array $params = []): Markup
+    {
+        $tag = $params['tag'] ?? 'div';
+        $content = $params['content'] ?? 'div';
+        $url = $params['url'] ?? '';
+        $attributes = array_merge(['hx-get' => $url], ($params['attributes'] ?? []));
+
+        return Template::raw(
+            Html::tag($tag, $content, $attributes)
+        );
+    }
+
+    /**
+     * Returns a `hx-post` form component.
+     *
+     * @param array $params
+     * @return Markup
+     */
+    public function post(array $params = []): Markup
+    {
+        $url = $params['url'] ?? '';
+        $content = $params['content'] ?? '';
+        $data = $params['data'] ?? [];
+        $attributes = array_merge(['hx-post' => $url], ($params['attributes'] ?? []));
+
+        $dataFields = [];
+
+        foreach ($data as $name => $value) {
+            $dataFields[] = Html::hiddenInput($name, $value);
+        }
+
+        return Template::raw(
+            Html::beginForm('', 'post', $attributes)
+            .Html::csrfInput()
+            .implode(' ', $dataFields)
+            .$content
+            .Html::endForm()
+        );
+    }
+
     /**
      * Returns whether this is a Htmx request.
      *
