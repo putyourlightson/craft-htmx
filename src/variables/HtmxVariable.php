@@ -8,7 +8,6 @@ namespace putyourlightson\htmx\variables;
 use Craft;
 use craft\helpers\Html;
 use craft\helpers\Template;
-use craft\web\Request;
 use Twig\Markup;
 
 class HtmxVariable
@@ -64,7 +63,7 @@ class HtmxVariable
     }
 
     /**
-     * Returns the request parameter if this is a Htmx request, otherwise `$defaultValue`.
+     * Returns the request parameter if this is a Htmx request and it exists, otherwise `$defaultValue`.
      *
      * @param string $name
      * @param mixed $defaultValue

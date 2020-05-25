@@ -54,7 +54,7 @@ Which will be output as:
 ```
 
 ### `craft.htmx.getParam(name, defaultValue = null)`
-Returns the request parameter if this is a Htmx request, otherwise `$defaultValue`.
+Returns the request parameter if this is a Htmx request and it exists, otherwise `$defaultValue`.
 
 ### `craft.htmx.isRequest`
 Evaluates to `true` if this is a Htmx request, otherwise `false`.
