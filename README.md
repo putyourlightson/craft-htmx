@@ -21,12 +21,6 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
     Temperature: <input type="text" name="temp" value="{{ temp }}" />
     <button type="submit" name="increment" value="1">+</button>
 </form>
-
-{# --- Increment a value by the provided value. --- #}
-
-{% if hx.isRequest and hx.element.name == 'increment' %}
-    {% set value = value + hx.element.value %}
-{% endif %}
 ```
 
 ## Controllers
