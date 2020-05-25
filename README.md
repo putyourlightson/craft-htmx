@@ -6,23 +6,6 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
 
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
-```twig
-{# Increment a temperature value by the provided value. #}
-
-{% set temp = craft.app.request.get('temp', 29) %}
-    
-<form hx-get="/get-temp">
-    {% if hx.isRequest and hx.element.name == 'increment' %}
-        {% set temp = temp + hx.element.value %}
-    {% endif %}
-    
-    <h3>It's {{ temp >= 30 ? 'hot' : 'mild' }}</h3>
-    <button type="submit" name="increment" value="-1">-</button>
-    Temperature: <input type="text" name="temp" value="{{ temp }}" />
-    <button type="submit" name="increment" value="1">+</button>
-</form>
-```
-
 ## Variables
 
 The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It makes available a `post` component as well as values provided by the [request headers](https://htmx.org/docs/#request-headers) in Htmx.
