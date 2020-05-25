@@ -14,12 +14,28 @@ Provides helpers for integrating [Htmx](https://htmx.org/) with [Craft CMS 3](ht
 {% endif %}
 ```
 
+## Controllers
+
+The `route` controller makes it possible to route actions to any controller action if Craft (or a plugin), while ensuring that the result is in the format `text/html`.
+
+The `route` parameter should be set to the controller action that you want to be called, for example `entries/save-entry`.
+
+```twig
+<form hx-post="/my-form">
+  {{ csrfInput() }}
+  <input type="hidden" name="action" value="htmx/route">
+  <input type="hidden" name="route" value="entries/save-entry">
+
+  <input type="hidden" name="sectionId" value="{{ entry.sectionId }}">
+  <input type="hidden" name="entryId" value="{{ entry.id }}">
+  <input type="text" name="title" value="{{ entry.title }}">
+  <input type="submit" value="Submit">
+</form>
+```
+
 ## Variables
 
-The following variables are available in your twig templates. These are provided by the [request headers](https://htmx.org/docs/#request-headers) in Htmx.
-
-> A shorthand version (`hx`) of the variable can also be used:  
-> `{% if hx.isRequest %}`
+The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It makes available the values provided by the [request headers](https://htmx.org/docs/#request-headers) in Htmx.
 
 ### `craft.htmx.isRequest`
 Evaluates to `true` if this is a Htmx request, otherwise `false`.
