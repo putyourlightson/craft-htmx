@@ -2,7 +2,7 @@
 
 # Htmx Plugin for Craft CMS 3
 
-Provides helpers for integrating [Htmx](https://htmx.org/) with [Craft CMS 3](https://craftcms.com/).
+Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://craftcms.com/).
 
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
 
@@ -16,9 +16,9 @@ Provides helpers for integrating [Htmx](https://htmx.org/) with [Craft CMS 3](ht
 
 ## Controllers
 
-The `route` controller makes it possible to route actions to any controller action if Craft (or a plugin), while ensuring that the result is in the format `text/html`.
+The `route` controller makes it possible to route actions to any controller action in Craft (or a plugin/module), while ensuring that the result is in the format `text/html`.
 
-The `route` parameter should be set to the controller action that you want to be called, for example `entries/save-entry`.
+When sending a POST request, the `action` field should be set to `htmx/route` and the `route` parameter should be set to the controller action that you want to be called, for example `entries/save-entry`. Be sure to send a CSRF token along with the request unless you have disabled CSRF protection in Craft.
 
 ```twig
 <form hx-post="/my-form">
