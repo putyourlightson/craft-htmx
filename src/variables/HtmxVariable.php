@@ -13,6 +13,15 @@ use Twig\Markup;
 
 class HtmxVariable
 {
+    public function component(string $template, array $options = []): Markup
+    {
+        $params = $options['params'] ?? [];
+        $hx = $options['hx'] ?? [];
+        $attributes = $options['attributes'] ?? [];
+
+        return ComponentHelper::component($template, $params, $hx, $attributes);
+    }
+
     /**
      * Returns a `hx-get` component with the provided options.
      *

@@ -2,13 +2,26 @@
 
 # Htmx Plugin for Craft CMS 3
 
-Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://craftcms.com/).
+Provides components and helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://craftcms.com/).
 
 > This plugin is currently in beta. Please contribute by reporting any bugs or issues.
+
+The plugin will automatically route any action requests made from Htmx through the `htmx/route` controller to ensure that the result is always in the format `text/html` and that no redirects take place.
 
 ## Variables
 
 The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It provides components as well as values passed in through the [Htmx request headers](https://htmx.org/docs/#request-headers).
+
+### `craft.htmx.component(template, options = {})`
+Renders a component using the provided template and tracks changes to any elements in it.
+
+```twig
+{{ hx.component('path/to/template', { 
+    params: {
+        entryId: 1,
+    },
+}) }}
+```
 
 ### `craft.htmx.get(tag, options = {})`
 Renders a `get` component using the provided tag and options.
@@ -126,44 +139,6 @@ Returns the name of the current active element.
 
 ### `craft.htmx.element.value`
 Returns the value of the current active element.
-
-## Controllers
-
-The `route` controller makes it possible to route actions to any controller action in Craft (or a plugin/module), while ensuring that the result is in the format `text/html` (and that no redirect takes place).
-
-When sending a POST request, the `action` field should be set to `htmx/route` and the `route` parameter should be set to the controller action that you want to be called, for example `entries/save-entry`. Be sure to send a CSRF token along with the request unless you have disabled CSRF protection in Craft.
-
-```twig
-{% set content %}
-    <input type="text" name="title" value="My Title">
-    <input type="submit" value="Save">
-{% endset %}
-
-{{ hx.post({
-    url: '/entry',
-    content: content,
-    data: {
-        action: 'htmx/route',
-        route: 'entries/save-entry',
-        sectionId: entry.sectionId,
-        entryId: entry.id,
-    }
-}) }}
-```
-
-Which will be output as:
-
-```twig
-<form hx-post="/my-form">
-  <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
-  <input type="hidden" name="action" value="htmx/route">
-  <input type="hidden" name="route" value="entries/save-entry">
-  <input type="hidden" name="sectionId" value="1">
-  <input type="hidden" name="entryId" value="1">
-  <input type="text" name="title" value="My Title">
-  <input type="submit" value="Save">
-</form>
-```
 
 ## Requirements
 

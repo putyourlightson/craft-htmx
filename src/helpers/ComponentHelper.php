@@ -7,11 +7,67 @@ namespace putyourlightson\htmx\helpers;
 
 use Craft;
 use craft\helpers\Html;
+use craft\helpers\StringHelper;
 use craft\helpers\Template;
 use Twig\Markup;
 
 class ComponentHelper
 {
+    /**
+     * Returns a live component.
+     *
+     * @param string $template
+     * @param array $params
+     * @param array $hx
+     * @param array $attributes
+     * @return Markup
+     */
+    public static function component(string $template, array $params, array $hx, array $attributes): Markup
+    {
+        $id = 'hx-'.StringHelper::randomString(8);
+
+        $hx = array_merge([
+                'target' => '#'.$id,
+                'include' => '*',
+            ],
+            $hx);
+
+        $attributes = array_merge(
+            self::_prefixAttributes($hx, 'hx-'),
+            $attributes
+        );
+
+        $hxParamsInput = Html::hiddenInput('hx-params', json_encode($params));
+
+        $renderedTemplate = Craft::$app->getView()->renderTemplate($template, $params);
+        $renderedTemplate = self::prepareOutput($renderedTemplate, $template);
+
+        $content = $hxParamsInput
+            .Html::tag('div', $renderedTemplate, ['id' => $id]);
+
+        return Template::raw(
+            Html::tag('div', $content, $attributes)
+        );
+    }
+
+    /**
+     * Returns prepared output for a component.
+     *
+     * @param string $output
+     * @param string $template
+     * @return string
+     */
+    public static function prepareOutput(string $output, string $template): string
+    {
+        $output = preg_replace(
+            '/hx-get(="")?/',
+            'hx-get="/'.$template.'"',
+            $output
+        );
+
+        return $output;
+    }
+
     /**
      * Returns a `hx-get` component.
      *

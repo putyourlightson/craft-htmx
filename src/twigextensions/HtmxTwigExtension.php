@@ -5,7 +5,7 @@
 
 namespace putyourlightson\htmx\twigextensions;
 
-use putyourlightson\htmx\variables\HtmxVariable;
+use putyourlightson\htmx\Htmx;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 
@@ -19,6 +19,6 @@ class HtmxTwigExtension extends AbstractExtension implements GlobalsInterface
      */
     public function getGlobals(): array
     {
-        return ['hx' => new HtmxVariable()];
+        return ['hx' => Htmx::$htmxVariable];
     }
 }
