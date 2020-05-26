@@ -92,7 +92,7 @@ Which will be output as:
 ### `craft.htmx.getParam(name, defaultValue = null)`
 Returns the request parameter if this is a Htmx request and it exists, otherwise `$defaultValue`.
 
-### `craft.htmx.isRequest`
+### `craft.htmx.request`
 Evaluates to `true` if this is a Htmx request, otherwise `false`.
 
 ### `craft.htmx.trigger.id`

@@ -68,7 +68,7 @@ class HtmxVariable
      *
      * @return bool
      */
-    public function getIsRequest(): bool
+    public function getRequest(): bool
     {
         return (bool)Craft::$app->getRequest()->getHeaders()->get('X-HX-Request', false, true);
     }
