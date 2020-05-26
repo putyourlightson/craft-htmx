@@ -56,7 +56,7 @@ class HtmxVariable
      */
     public function getParam(string $name, $defaultValue = null)
     {
-        if (!$this->getIsRequest()) {
+        if (!$this->getRequest()) {
             return $defaultValue;
         }
 
