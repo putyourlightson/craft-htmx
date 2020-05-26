@@ -13,14 +13,24 @@ The plugin will automatically route any action requests made from Htmx through t
 The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It provides components as well as values passed in through the [Htmx request headers](https://htmx.org/docs/#request-headers).
 
 ### `craft.htmx.component(template, options = {})`
-Renders a component using the provided template and tracks changes to any elements in it.
+Renders a reactive component using the provided template.
 
 ```twig
 {{ hx.component('path/to/template', { 
     params: {
-        entryId: 1,
+        entryId: entry.id,
+        title: entry.title,
     },
 }) }}
+```
+
+The `params` automatically become available as twig variables in the component:
+
+```twig
+Entry ID: {{ entryId }}
+
+{# Add `hx-get` to make the input field reactive #}
+<input hx-get type="text" name="title" value="{{ title }}">
 ```
 
 ### `craft.htmx.get(tag, options = {})`

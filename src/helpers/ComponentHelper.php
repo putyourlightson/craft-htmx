@@ -59,8 +59,9 @@ class ComponentHelper
      */
     public static function prepareOutput(string $output, string $template): string
     {
+        // Replace `hx-get`, or `hx-get=""`
         $output = preg_replace(
-            '/hx-get(="")?/',
+            '/hx-get([ >]|="")/',
             'hx-get="/'.$template.'"',
             $output
         );
