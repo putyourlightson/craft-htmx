@@ -18,14 +18,14 @@ class ComponentHelper
      * @param string $tag
      * @param string $url
      * @param string $content
-     * @param array $data
+     * @param array $params
      * @param array $hx
      * @param array $attributes
      * @return Markup
      */
-    public static function get(string $tag, string $url, string $content, array $data, array $hx, array $attributes): Markup
+    public static function get(string $tag, string $url, string $content, array $params, array $hx, array $attributes): Markup
     {
-        $queryString = http_build_query($data);
+        $queryString = http_build_query($params);
         $url .= $queryString ? '?'.$queryString : '';
 
         $hx = array_merge(['get' => $url], $hx);
@@ -43,12 +43,12 @@ class ComponentHelper
      * @param string $tag
      * @param string $url
      * @param string $content
-     * @param array $data
+     * @param array $params
      * @param array $hx
      * @param array $attributes
      * @return Markup
      */
-    public static function post(string $tag, string $url, string $content, array $data, array $hx, array $attributes): Markup
+    public static function post(string $tag, string $url, string $content, array $params, array $hx, array $attributes): Markup
     {
         $hx = array_merge(['post' => $url], $hx);
         $attributes = array_merge(self::_prefixAttributes($hx, 'hx-'), $attributes);
@@ -59,7 +59,7 @@ class ComponentHelper
             $inputFields[] = Html::csrfInput();
         }
 
-        foreach ($data as $name => $value) {
+        foreach ($params as $name => $value) {
             $inputFields[] = Html::hiddenInput($name, $value);
         }
 

@@ -6,45 +6,58 @@
 namespace putyourlightson\htmx\variables;
 
 use Craft;
+use craft\helpers\Html;
+use craft\helpers\Template;
 use putyourlightson\htmx\helpers\ComponentHelper;
 use Twig\Markup;
 
 class HtmxVariable
 {
     /**
-     * Returns a `hx-get` component.
+     * Returns a `hx-get` component with the provided options.
      *
-     * @param array $params
+     * @param string $tag
+     * @param array $options
      * @return Markup
      */
-    public function get(array $params = []): Markup
+    public function get(string $tag = 'div', array $options = []): Markup
     {
-        $tag = $params['tag'] ?? 'div';
-        $url = $params['url'] ?? '';
-        $content = $params['content'] ?? '';
-        $data = $params['data'] ?? [];
-        $hx = $params['hx'] ?? [];
-        $attributes = $params['attributes'] ?? [];
+        $url = $options['url'] ?? '';
+        $content = $options['content'] ?? '';
+        $params = $options['params'] ?? [];
+        $hx = $options['hx'] ?? [];
+        $attributes = $options['attributes'] ?? [];
 
-        return ComponentHelper::get($tag, $url, $content, $data, $hx, $attributes);
+        return ComponentHelper::get($tag, $url, $content, $params, $hx, $attributes);
     }
 
     /**
-     * Returns a `hx-post` component.
+     * Returns a `hx-post` component with the provided options.
      *
-     * @param array $params
+     * @param string $tag
+     * @param array $options
      * @return Markup
      */
-    public function post(array $params = []): Markup
+    public function post($tag = 'form', array $options = []): Markup
     {
-        $tag = $params['tag'] ?? 'form';
-        $url = $params['url'] ?? '';
-        $content = $params['content'] ?? '';
-        $data = $params['data'] ?? [];
-        $hx = $params['hx'] ?? [];
-        $attributes = $params['attributes'] ?? [];
+        $url = $options['url'] ?? '';
+        $content = $options['content'] ?? '';
+        $params = $options['params'] ?? [];
+        $hx = $options['hx'] ?? [];
+        $attributes = $options['attributes'] ?? [];
 
-        return ComponentHelper::post($tag, $url, $content, $data, $hx, $attributes);
+        return ComponentHelper::post($tag, $url, $content, $params, $hx, $attributes);
+    }
+
+    /**
+     * Returns a script tag to the source file using unpkg.com.
+     *
+     * @param array $attributes
+     * @return Markup
+     */
+    public function script(array $attributes = []): Markup
+    {
+        return Template::raw(Html::jsFile('https://unpkg.com/htmx.org', $attributes));
     }
 
     /**

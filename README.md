@@ -10,21 +10,20 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
 
 The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It provides components as well as values passed in through the [Htmx request headers](https://htmx.org/docs/#request-headers).
 
-### `craft.htmx.get`
-Renders a `get` component from the provided values (all of which are optional).
+### `craft.htmx.get(tag, options = {})`
+Renders a `get` component using the provided tag and options.
 
 ```twig
 {# Minimal example #}
-{{ hx.get({ 
+{{ hx.get('div', { 
     content: 'Like', 
 }) }}
 
-{# Example with all possible values #}
-{{ hx.get({
-    tag: 'button', 
+{# Example with all possible options #}
+{{ hx.get('button', {
     url: '/like',
     content: 'Like',
-    data: {
+    params: {
         entryId: 1,
     },
     hx: {
@@ -42,25 +41,24 @@ Which will be output as:
 {# Minimal example #}
 <div hx-get="">Like</div>
 
-{# Example with all possible values #}
+{# Example with all possible options #}
 <button hx-get="/like?entryId=1" hx-trigger="click" class="btn">Like</button>
 ```
 
-### `craft.htmx.post`
-Renders a `post` component from the provided values (all of which are optional). A CSRF token will automatically be added _if_ CSRF validation is enabled. 
+### `craft.htmx.post(tag, options = {})`
+Renders a `post` component using the provided tag and options. A CSRF token will automatically be added _if_ CSRF validation is enabled. 
 
 ```twig
 {# Minimal example #}
-{{ hx.post({
+{{ hx.post('form', {
     content: '<input type="submit" value="Like">',
 }) }}
 
-{# Example with all possible values #}
-{{ hx.post({
-    tag: 'form', 
+{# Example with all possible options #}
+{{ hx.post('form', {
     url: '/like',
     content: '<input type="submit" value="Like">',
-    data: {
+    params: {
         entryId: 1,
     },
     hx: {
@@ -81,12 +79,19 @@ Which will be output as:
   <input type="submit" value="Like">
 </form>
 
-{# Example with all possible values #}
+{# Example with all possible options #}
 <form hx-post="/like" hx-confirm="Are you sure?" class="form">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="hidden" name="entryId" value="1">
   <input type="submit" value="Like">
 </form>
+```
+
+### `craft.htmx.script(attributes = {})`
+Returns a script tag to include the latest version of Htmx from unpkg.com.
+
+```twig
+<script src="https://unpkg.com/htmx.org" defer></script>
 ```
 
 ### `craft.htmx.getParam(name, defaultValue = null)`
