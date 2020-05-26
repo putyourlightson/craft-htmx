@@ -6,14 +6,13 @@
 namespace putyourlightson\htmx\variables;
 
 use Craft;
-use craft\helpers\Html;
-use craft\helpers\Template;
+use putyourlightson\htmx\helpers\ComponentHelper;
 use Twig\Markup;
 
 class HtmxVariable
 {
     /**
-     * Returns a `hx-get` tag.
+     * Returns a `hx-get` component.
      *
      * @param array $params
      * @return Markup
@@ -24,19 +23,14 @@ class HtmxVariable
         $url = $params['url'] ?? '';
         $content = $params['content'] ?? '';
         $data = $params['data'] ?? [];
+        $hx = $params['hx'] ?? [];
+        $attributes = $params['attributes'] ?? [];
 
-        $queryString = http_build_query($data);
-        $url .= $queryString ? '?'.$queryString : '';
-
-        $attributes = array_merge(['hx-get' => $url], ($params['attributes'] ?? []));
-
-        return Template::raw(
-            Html::tag($tag, $content, $attributes)
-        );
+        return ComponentHelper::get($tag, $url, $content, $data, $hx, $attributes);
     }
 
     /**
-     * Returns a `hx-post` form component.
+     * Returns a `hx-post` component.
      *
      * @param array $params
      * @return Markup
@@ -47,19 +41,10 @@ class HtmxVariable
         $url = $params['url'] ?? '';
         $content = $params['content'] ?? '';
         $data = $params['data'] ?? [];
-        $attributes = array_merge(['hx-post' => $url], ($params['attributes'] ?? []));
+        $hx = $params['hx'] ?? [];
+        $attributes = $params['attributes'] ?? [];
 
-        $inputFields = [Html::csrfInput()];
-
-        foreach ($data as $name => $value) {
-            $inputFields[] = Html::hiddenInput($name, $value);
-        }
-
-        $content = implode(' ', $inputFields).$content;
-
-        return Template::raw(
-            Html::tag($tag, $content, $attributes)
-        );
+        return ComponentHelper::post($tag, $url, $content, $data, $hx, $attributes);
     }
 
     /**

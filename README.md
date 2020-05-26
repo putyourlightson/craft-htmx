@@ -18,6 +18,12 @@ Renders a `get` component from the provided values.
     tag: 'button', 
     url: '/like',
     content: 'Like',
+    data: {
+        entryId: 1,
+    },
+    hx: {
+        trigger: 'click',
+    },
     attributes: {
         class: 'btn',
     }
@@ -27,7 +33,7 @@ Renders a `get` component from the provided values.
 Which will be output as:
 
 ```twig
-<button hx-get="/like" class="btn">Like</button>
+<button hx-get="/like?entryId=1" hx-trigger="click" class="btn">Like</button>
 ```
 
 ### `craft.htmx.post`
@@ -35,10 +41,17 @@ Renders a `post` component from the provided values.
 
 ```twig
 {{ hx.post({
+    tag: 'form', 
     url: '/like',
     content: '<input type="submit" value="Like">',
     data: {
-        entryId: entry.id,
+        entryId: 1,
+    },
+    hx: {
+        confirm: 'Are you sure?',
+    },
+    attributes: {
+        class: 'form',
     }
 }) }}
 ```
@@ -46,7 +59,7 @@ Renders a `post` component from the provided values.
 Which will be output as:
 
 ```twig
-<form hx-post="/like">
+<form hx-post="/like" hx-confirm="Are you sure?" class="form">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="hidden" name="entryId" value="1">
   <input type="submit" value="Like">
