@@ -14,12 +14,12 @@ The `craft.htmx` variable (and the shorthand version `hx`) is available in your 
 Renders a `get` component from the provided values (all of which are optional).
 
 ```twig
-{# Example 1 #}
+{# Minimal example #}
 {{ hx.get({ 
     content: 'Like', 
 }) }}
 
-{# Example 2 #}
+{# Example with all possible values #}
 {{ hx.get({
     tag: 'button', 
     url: '/like',
@@ -39,10 +39,10 @@ Renders a `get` component from the provided values (all of which are optional).
 Which will be output as:
 
 ```twig
-{# Example 1 #}
+{# Minimal example #}
 <div hx-get="">Like</div>
 
-{# Example 2 #}
+{# Example with all possible values #}
 <button hx-get="/like?entryId=1" hx-trigger="click" class="btn">Like</button>
 ```
 
@@ -50,12 +50,12 @@ Which will be output as:
 Renders a `post` component from the provided values (all of which are optional). A CSRF token will automatically be added _if_ CSRF validation is enabled. 
 
 ```twig
-{# Example 1 #}
+{# Minimal example #}
 {{ hx.post({
     content: '<input type="submit" value="Like">',
 }) }}
 
-{# Example 2 #}
+{# Example with all possible values #}
 {{ hx.post({
     tag: 'form', 
     url: '/like',
@@ -75,13 +75,13 @@ Renders a `post` component from the provided values (all of which are optional).
 Which will be output as:
 
 ```twig
-{# Example 1 #}
+{# Minimal example #}
 <form hx-post="">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="submit" value="Like">
 </form>
 
-{# Example 2 #}
+{# Example with all possible values #}
 <form hx-post="/like" hx-confirm="Are you sure?" class="form">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="hidden" name="entryId" value="1">
