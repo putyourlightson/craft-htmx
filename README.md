@@ -14,10 +14,12 @@ The `craft.htmx` variable (and the shorthand version `hx`) is available in your 
 Renders a `get` component from the provided values (all of which are optional).
 
 ```twig
+{# Example 1 #}
 {{ hx.get({ 
     content: 'Like', 
 }) }}
 
+{# Example 2 #}
 {{ hx.get({
     tag: 'button', 
     url: '/like',
@@ -37,8 +39,10 @@ Renders a `get` component from the provided values (all of which are optional).
 Which will be output as:
 
 ```twig
+{# Example 1 #}
 <div hx-get="">Like</div>
 
+{# Example 2 #}
 <button hx-get="/like?entryId=1" hx-trigger="click" class="btn">Like</button>
 ```
 
@@ -46,10 +50,12 @@ Which will be output as:
 Renders a `post` component from the provided values (all of which are optional).
 
 ```twig
+{# Example 1 #}
 {{ hx.post({
     content: '<input type="submit" value="Like">',
 }) }}
 
+{# Example 2 #}
 {{ hx.post({
     tag: 'form', 
     url: '/like',
@@ -69,11 +75,13 @@ Renders a `post` component from the provided values (all of which are optional).
 Which will be output as:
 
 ```twig
+{# Example 1 #}
 <form hx-post="">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="submit" value="Like">
 </form>
 
+{# Example 2 #}
 <form hx-post="/like" hx-confirm="Are you sure?" class="form">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="hidden" name="entryId" value="1">
