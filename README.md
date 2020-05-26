@@ -93,7 +93,7 @@ Which will be output as:
 Returns the request parameter if this is a Htmx request and it exists, otherwise `$defaultValue`.
 
 ### `craft.htmx.request`
-Evaluates to `true` if this is a Htmx request, otherwise `false`.
+Returns `true` if this is a Htmx request, otherwise `false`.
 
 ### `craft.htmx.trigger.id`
 Returns the ID of the element that triggered the request.
