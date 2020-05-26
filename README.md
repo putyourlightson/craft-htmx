@@ -47,7 +47,7 @@ Which will be output as:
 ```
 
 ### `craft.htmx.post`
-Renders a `post` component from the provided values (all of which are optional).
+Renders a `post` component from the provided values (all of which are optional). A CSRF token will automatically be added _if_ CSRF validation is enabled. 
 
 ```twig
 {# Example 1 #}

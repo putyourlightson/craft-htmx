@@ -5,6 +5,7 @@
 
 namespace putyourlightson\htmx\helpers;
 
+use Craft;
 use craft\helpers\Html;
 use craft\helpers\Template;
 use Twig\Markup;
@@ -52,7 +53,11 @@ class ComponentHelper
         $hx = array_merge(['post' => $url], $hx);
         $attributes = array_merge(self::_prefixAttributes($hx, 'hx-'), $attributes);
 
-        $inputFields = [Html::csrfInput()];
+        $inputFields = [];
+
+        if (Craft::$app->getRequest()->enableCsrfValidation) {
+            $inputFields[] = Html::csrfInput();
+        }
 
         foreach ($data as $name => $value) {
             $inputFields[] = Html::hiddenInput($name, $value);
