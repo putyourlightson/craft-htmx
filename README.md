@@ -34,7 +34,7 @@ Entry ID: {{ entryId }}
 {{ title|length }} characters of max 255
 
 {# Any `hx-` attributes can be used #}
-<button hx-get hx-confirm hx-trigger="click">Refresh</button>
+<button hx-get hx-confirm="Are you sure?">Refresh</button>
 ```
 
 ### `craft.htmx.get(tag, options = {})`
