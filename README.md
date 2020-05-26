@@ -31,6 +31,10 @@ Entry ID: {{ entryId }}
 
 {# Add `hx-get` to make the input field reactive #}
 <input hx-get type="text" name="title" value="{{ title }}">
+{{ title|length }} characters of max 255
+
+{# Any `hx-` attributes can be used #}
+<button hx-get hx-confirm hx-trigger="click">Refresh</button>
 ```
 
 ### `craft.htmx.get(tag, options = {})`
@@ -114,11 +118,8 @@ Which will be output as:
 Returns a script tag to include the latest version of Htmx from unpkg.com.
 
 ```twig
-<script src="https://unpkg.com/htmx.org" defer></script>
+<script src="https://unpkg.com/htmx.org"></script>
 ```
-
-### `craft.htmx.getParam(name, defaultValue = null)`
-Returns the request parameter if this is a Htmx request and it exists, otherwise `$defaultValue`.
 
 ### `craft.htmx.request`
 Returns `true` if this is a Htmx request, otherwise `false`.

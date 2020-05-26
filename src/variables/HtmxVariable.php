@@ -70,22 +70,6 @@ class HtmxVariable
     }
 
     /**
-     * Returns the request parameter if this is a Htmx request and it exists, otherwise `$defaultValue`.
-     *
-     * @param string $name
-     * @param mixed $defaultValue
-     * @return mixed
-     */
-    public function getParam(string $name, $defaultValue = null)
-    {
-        if (!$this->getRequest()) {
-            return $defaultValue;
-        }
-
-        return Craft::$app->getRequest()->getParam($name, $defaultValue);
-    }
-
-    /**
      * Returns whether this is a Htmx request.
      *
      * @return bool
