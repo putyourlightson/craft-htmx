@@ -11,9 +11,13 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
 The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It provides components as well as values passed in through the [Htmx request headers](https://htmx.org/docs/#request-headers).
 
 ### `craft.htmx.get`
-Renders a `get` component from the provided values.
+Renders a `get` component from the provided values (all values are optional).
 
 ```twig
+{{ hx.get({ 
+    content: 'Like', 
+}) }}
+
 {{ hx.get({
     tag: 'button', 
     url: '/like',
@@ -33,13 +37,19 @@ Renders a `get` component from the provided values.
 Which will be output as:
 
 ```twig
+<div hx-get="">Like</div>
+
 <button hx-get="/like?entryId=1" hx-trigger="click" class="btn">Like</button>
 ```
 
 ### `craft.htmx.post`
-Renders a `post` component from the provided values.
+Renders a `post` component from the provided values (all values are optional).
 
 ```twig
+{{ hx.post({
+    content: '<input type="submit" value="Like">',
+}) }}
+
 {{ hx.post({
     tag: 'form', 
     url: '/like',
@@ -59,6 +69,11 @@ Renders a `post` component from the provided values.
 Which will be output as:
 
 ```twig
+<form hx-post="">
+  <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
+  <input type="submit" value="Like">
+</form>
+
 <form hx-post="/like" hx-confirm="Are you sure?" class="form">
   <input type="hidden" name="CRAFT_CSRF_TOKEN" value="UIfhSl2qN0084dgj6NJdHcCTnL5xFPJ...">
   <input type="hidden" name="entryId" value="1">
