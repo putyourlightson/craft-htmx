@@ -11,7 +11,7 @@ Provides helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://
 The `craft.htmx` variable (and the shorthand version `hx`) is available in your twig templates. It provides components as well as values passed in through the [Htmx request headers](https://htmx.org/docs/#request-headers).
 
 ### `craft.htmx.get`
-Renders a `get` component from the provided values (all values are optional).
+Renders a `get` component from the provided values (all of which are optional).
 
 ```twig
 {{ hx.get({ 
@@ -43,7 +43,7 @@ Which will be output as:
 ```
 
 ### `craft.htmx.post`
-Renders a `post` component from the provided values (all values are optional).
+Renders a `post` component from the provided values (all of which are optional).
 
 ```twig
 {{ hx.post({
