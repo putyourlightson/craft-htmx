@@ -4,7 +4,7 @@
 
 Provides components and helpers for using [Htmx](https://htmx.org/) with [Craft CMS 3](https://craftcms.com/).
 
-> This plugin is currently in beta. Please contribute by reporting any bugs or issues.
+> This plugin is no longer maintained and has been replaced by [Sprig](https://putyourlightson.com/plugins/sprig).
 
 The plugin will automatically route any action requests made from Htmx through the `htmx/route` controller to ensure that the result is always in the format `text/html` and that no redirects take place.
 
